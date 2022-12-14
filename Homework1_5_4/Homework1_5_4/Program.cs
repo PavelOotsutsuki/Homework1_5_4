@@ -74,8 +74,16 @@ namespace Homework1_5_4
             string fullname = Console.ReadLine();
             Console.Write("Введите должность: ");
             string post = Console.ReadLine();
-            dossier.Add(fullname, post);
-            Console.WriteLine("Досье добавлено");
+
+            if (dossier.ContainsKey(fullname) == false)
+            {
+                dossier.Add(fullname, post);
+                Console.WriteLine("Досье добавлено");
+            }
+            else
+            {
+                Console.WriteLine("Досье не добавлено. Такое ФИО уже существует");
+            }
         }
 
         static void PrintMenu()
