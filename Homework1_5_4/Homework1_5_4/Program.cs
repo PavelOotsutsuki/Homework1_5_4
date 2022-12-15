@@ -15,16 +15,8 @@ namespace Homework1_5_4
 
         static void Main(string[] args)
         {
-            Dictionary<string, string> dossier = new Dictionary<string, string>();
+            Dictionary<string, string> dossiers = new Dictionary<string, string>();
 
-            Work(dossier);
-
-            Console.Write("Для продолжения нажмите любую кнопку...");
-            Console.ReadKey();
-        }
-
-        static void Work(Dictionary <string, string> dossier)
-        {
             bool isWork = true;
 
             while (isWork)
@@ -37,13 +29,13 @@ namespace Homework1_5_4
                 switch (command)
                 {
                     case CaseAddDossier:
-                        AddDossier(ref dossier);
+                        AddDossier(dossiers);
                         break;
                     case CasePrintAllDossier:
-                        PrintAllDossier(dossier);
+                        PrintAllDossier(dossiers);
                         break;
                     case CaseRemoveDossier:
-                        RemoveDossier(ref dossier);
+                        RemoveDossier(dossiers);
                         break;
                     case CaseExit:
                         isWork = false;
@@ -55,29 +47,32 @@ namespace Homework1_5_4
 
                 Console.ReadKey();
             }
+
+            Console.Write("Для продолжения нажмите любую кнопку...");
+            Console.ReadKey();
         }
 
-        static void PrintAllDossier(Dictionary <string, string> dossier)
+        static void PrintAllDossier(Dictionary <string, string> dossiers)
         {
             int fileNumber = 1;
 
-            foreach (var file in dossier)
+            foreach (var file in dossiers)
             {
                 Console.WriteLine(fileNumber + ". " + file.Key + " - " + file.Value);
                 fileNumber++;
             }
         }
 
-        static void AddDossier(ref Dictionary <string, string> dossier)
+        static void AddDossier(Dictionary <string, string> dossiers)
         {
             Console.Write("Введите ФИО: ");
             string fullname = Console.ReadLine();
             Console.Write("Введите должность: ");
             string post = Console.ReadLine();
 
-            if (dossier.ContainsKey(fullname) == false)
+            if (dossiers.ContainsKey(fullname) == false)
             {
-                dossier.Add(fullname, post);
+                dossiers.Add(fullname, post);
                 Console.WriteLine("Досье добавлено");
             }
             else
@@ -95,14 +90,14 @@ namespace Homework1_5_4
             Console.WriteLine();
         }
 
-        static void RemoveDossier(ref Dictionary <string, string> dossier)
+        static void RemoveDossier(Dictionary <string, string> dossiers)
         {
             Console.Write("Введите ФИО досье, которое хотите удалить: ");
             string fullname = Console.ReadLine();
 
-            if (dossier.ContainsKey(fullname))
+            if (dossiers.ContainsKey(fullname))
             {
-                dossier.Remove(fullname);
+                dossiers.Remove(fullname);
             }
             else
             {
